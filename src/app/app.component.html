@@ -26,7 +26,21 @@
       <div class="uk-grid-small uk-margin-left" uk-grid>
         <div><button class="uk-button uk-button-default uk-button-small">Dates</button></div>
         <div><button class="uk-button uk-button-default uk-button-small">Guests</button></div>
-        <div><button class="uk-button uk-button-default uk-button-small">Home type</button></div>
+        <div>
+          <button class="uk-button uk-button-default uk-button-small">Home type</button>
+          <div uk-dropdown="mode: click" class="uk-width-medium">
+            <form>
+              <fieldset class="uk-fieldset">
+                <div class="uk-flex uk-flex-column">
+                  <label><input class="uk-checkbox" type="checkbox" /> Entire place</label>
+                  <label><input class="uk-checkbox" type="checkbox" /> Private room</label>
+                  <label><input class="uk-checkbox" type="checkbox" /> Shared room</label>
+                  <label><input class="uk-checkbox" type="checkbox" /> Hotel room</label>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
         <div><button class="uk-button uk-button-default uk-button-small">Price</button></div>
         <div><button class="uk-button uk-button-default uk-button-small">Rooms and beds</button></div>
         <div><button class="uk-button uk-button-default uk-button-small">Amenities</button></div>
