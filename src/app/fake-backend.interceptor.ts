@@ -41,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     ];
     const listings = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 40; i++) {
       listings.push({
         image_url: 'assets/' + images[Math.floor(Math.random() * 4)],
         type: types[Math.floor(Math.random() * 3)],
