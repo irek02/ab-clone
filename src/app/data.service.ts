@@ -1,36 +1,18 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpResponse,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
-@Injectable()
-export class FakeBackendInterceptor implements HttpInterceptor {
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
   constructor() {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return of(null)
-      .pipe(
-        mergeMap(() => {
-          if (request.url.endsWith('/api/listings') && request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this._generateListings() }));
-          }
-
-          return next.handle(request);
-        })
-      )
-      .pipe(materialize())
-      .pipe(delay(500))
-      .pipe(dematerialize());
+  getListings$(): Observable<any[]> {
+    return of(this.generateListings()).pipe(delay(1000));
   }
 
-  _generateListings() {
+  private generateListings() {
     const images = ['listing.jpg', 'listing2.jpeg', 'listing3.jpeg', 'listing4.jpeg'];
     const types = ['private room', 'entire apartment', 'tree house'];
     const locations = ['New York', 'San Francisco', 'Boston'];
@@ -39,6 +21,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       'Charming gardenroom with woodstove',
       'Superb duplex apartment in the historical centre'
     ];
+
     const listings = [];
 
     for (let i = 0; i < 40; i++) {
@@ -58,9 +41,3 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return listings;
   }
 }
-
-export let fakeBackendProvider = {
-  provide: HTTP_INTERCEPTORS,
-  useClass: FakeBackendInterceptor,
-  multi: true
-};

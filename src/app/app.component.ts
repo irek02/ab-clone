@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +12,10 @@ export class AppComponent implements OnInit {
 
   listings$: Observable<any[]>;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.listings$ = this.httpClient.get<any[]>('example.com/api/listings');
-  }
-
-  onScroll(event) {
-    console.log('yay!', event);
+    this.listings$ = this.dataService.getListings$();
   }
 
   parseStars(stars: number) {
