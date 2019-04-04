@@ -28,7 +28,7 @@
         <div><button class="uk-button uk-button-default uk-button-small">Guests</button></div>
         <div>
           <button class="uk-button uk-button-default uk-button-small">Home type</button>
-          <div uk-dropdown="mode: click" class="uk-width-medium">
+          <div uk-dropdown="mode: click" class="uk-width-medium" #homeTypeFilter>
             <form [formGroup]="form" (submit)="submit(form.value)">
               <fieldset class="uk-fieldset">
                 <div>

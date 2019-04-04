@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DataService } from './data.service';
+declare var UIkit: any;
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('homeTypeFilter') homeTypeFilter;
   title = 'airbnb-clone';
   homeTypeFilters = [
     { name: 'Entire place', description: 'Have the whole place to yourself', selected: false },
@@ -53,5 +55,8 @@ export class AppComponent implements OnInit {
     //    }
     //   });
     // });
+    // --
+    // Hide the dropdown.
+    UIkit.dropdown(this.homeTypeFilter.nativeElement).hide();
   }
 }
