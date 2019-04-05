@@ -6,15 +6,24 @@ import { delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  listings$ = new BehaviorSubject([]);
+  private listings$ = new BehaviorSubject({ loading: true, data: [] });
+
   constructor() {}
 
-  getListings$(): Observable<any[]> {
-    return this.listings$.asObservable().pipe(delay(500));
+  getListings$(): Observable<{ loading: boolean; data: any[] }> {
+    return this.listings$.asObservable();
   }
 
   loadListings() {
-    this.listings$.next(this.generateListings());
+    this.listings$.next({ loading: true, data: [] });
+    this.getListingsFromApi$().subscribe(listings => {
+      this.listings$.next({ loading: false, data: listings });
+    });
+  }
+
+  getListingsFromApi$(): Observable<any[]> {
+    // In a real app this would be an API call using HttpClient.
+    return of(this.generateListings()).pipe(delay(1000));
   }
 
   private generateListings() {

@@ -19,15 +19,14 @@ export class AppComponent implements OnInit {
     { name: 'Shared room', description: 'Share a room as a common space', selected: false },
     { name: 'Hotel room', description: 'Private or shared room in a hotel', selected: false }
   ];
-  listings$: Observable<any[]>;
+  listings$: Observable<{}>;
   form: FormGroup;
-  isLoading$ = new BehaviorSubject(true);
 
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.listings$ = this.dataService.getListings$();
     this.dataService.loadListings();
-    this.listings$ = this.dataService.getListings$().pipe(tap(listings => this.isLoading$.next(false)));
     this.form = this.fb.group({
       homeTypeFilters: new FormArray(this.homeTypeFilters.map(filter => new FormControl(false)))
     });
@@ -61,7 +60,7 @@ export class AppComponent implements OnInit {
     // --
     // Hide the dropdown.
     UIkit.dropdown(this.homeTypeFilter.nativeElement).hide();
-    this.isLoading$.next(true);
+    this.form.disable();
     this.dataService.loadListings();
   }
 }
