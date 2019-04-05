@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  listings$ = new BehaviorSubject([]);
   constructor() {}
 
   getListings$(): Observable<any[]> {
-    return of(this.generateListings()).pipe(delay(1000));
+    return this.listings$.asObservable().pipe(delay(500));
+  }
+
+  loadListings() {
+    this.listings$.next(this.generateListings());
   }
 
   private generateListings() {

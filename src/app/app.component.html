@@ -68,11 +68,11 @@
   <div class="uk-container uk-container-expand">
     <h1 class="uk-heading-primary">Homes</h1>
     <div
-      *ngIf="(listings$ | async) as listings; else loading"
+      *ngIf="!(isLoading$ | async) || !(listings$ | async)"
       class="uk-grid-match uk-child-width-1-5@l uk-child-width-1-4@m uk-child-width-1-2@s"
       uk-grid
     >
-      <div *ngFor="let listing of listings">
+      <div *ngFor="let listing of (listings$ | async)">
         <div class="uk-card">
           <div class="uk-card-media-top">
             <img src="{{ listing.image_url }}" class="uk-border-rounded" />
@@ -102,10 +102,10 @@
   </div>
 </section>
 
-<ng-template #loading>
-  <div class="uk-container uk-text-center uk-margin">
-    <div uk-spinner="ratio: 3"></div>
-  </div>
-</ng-template>
+<!-- <ng-template #loading> -->
+<div *ngIf="(isLoading$ | async)" class="uk-container uk-text-center uk-margin">
+  <div uk-spinner="ratio: 3"></div>
+</div>
+<!-- </ng-template> -->
 
 <router-outlet></router-outlet>

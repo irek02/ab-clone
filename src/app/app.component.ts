@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DataService } from './data.service';
+import { map, tap } from 'rxjs/operators';
 declare var UIkit: any;
 
 @Component({
@@ -20,11 +21,13 @@ export class AppComponent implements OnInit {
   ];
   listings$: Observable<any[]>;
   form: FormGroup;
+  isLoading$ = new BehaviorSubject(true);
 
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.listings$ = this.dataService.getListings$();
+    this.dataService.loadListings();
+    this.listings$ = this.dataService.getListings$().pipe(tap(listings => this.isLoading$.next(false)));
     this.form = this.fb.group({
       homeTypeFilters: new FormArray(this.homeTypeFilters.map(filter => new FormControl(false)))
     });
@@ -58,5 +61,7 @@ export class AppComponent implements OnInit {
     // --
     // Hide the dropdown.
     UIkit.dropdown(this.homeTypeFilter.nativeElement).hide();
+    this.isLoading$.next(true);
+    this.dataService.loadListings();
   }
 }
