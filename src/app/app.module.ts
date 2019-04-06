@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderContainerComponent } from './containers/header-container/header-container.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { FilterHomeTypeFormComponent } from './components/filter-home-type-form/filter-home-type-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderContainerComponent,
     NavComponent,
-    FiltersComponent
+    FiltersComponent,
+    FilterHomeTypeFormComponent
   ],
   imports: [
     BrowserModule,

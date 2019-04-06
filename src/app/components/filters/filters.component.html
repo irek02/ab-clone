@@ -1,47 +1,45 @@
 <div class="uk-grid-small uk-margin-left" uk-grid>
-  <div><button class="uk-button uk-button-default uk-button-small">Dates</button></div>
-  <div><button class="uk-button uk-button-default uk-button-small">Guests</button></div>
-  <!-- <div (clickOutside)="closeFilterDropdown('homeType')"> -->
+  <!-- Home type filter -->
   <div (clickOutside)="closeFilterDropdown.next('homeType')">
     <button
-      (click)="toggleFilterDropdown.next('homeType')"
       [ngClass]="{ 'uk-button-primary': filterBarState.homeType.selected }"
+      (click)="toggleFilterDropdown.next('homeType')"
       class="uk-button uk-button-default uk-button-small"
     >
       Home type
     </button>
-    <div
-      *ngIf="filterBarState.homeType.open"
-      class="uk-width-medium uk-dropdown uk-open uk-dropdown-bottom-left"
-      #homeTypeFilter
-    >
-      <form [formGroup]="form" (submit)="submit.next(form.value)">
-        <fieldset class="uk-fieldset">
-          <div>
-            <div
-              class="uk-flex uk-flex-column uk-margin"
-              *ngFor="let filter of form.get('homeTypeFilters')['controls']; let i = index"
-            >
-              <label class="uk-flex uk-flex-row uk-margin-small">
-                <div><input class="uk-checkbox" type="checkbox" [formControl]="filter" /></div>
-                <div class="uk-margin-small-left">
-                  <div>
-                    {{ homeTypeFilters[i].name }}
-                  </div>
-                  <div class="uk-text-small">
-                    {{ homeTypeFilters[i].description }}
-                  </div>
-                </div>
-              </label>
-            </div>
-          </div>
-        </fieldset>
-        <button class="uk-button uk-button-link uk-button-large uk-align-right uk-margin-small">Apply</button>
-      </form>
+
+    <div *ngIf="filterBarState.homeType.open" class="uk-width-medium uk-dropdown uk-open uk-dropdown-bottom-left">
+      <app-filter-home-type-form
+        [form]="form"
+        [homeTypeFilters]="homeTypeFilters"
+        (submit)="submit.next(form.value)"
+      ></app-filter-home-type-form>
     </div>
   </div>
-  <div><button class="uk-button uk-button-default uk-button-small">Price</button></div>
-  <div><button class="uk-button uk-button-default uk-button-small">Rooms and beds</button></div>
-  <div><button class="uk-button uk-button-default uk-button-small">Amenities</button></div>
-  <div><button class="uk-button uk-button-default uk-button-small">More filters</button></div>
+
+  <!-- Dates filter -->
+  <div>
+    <button class="uk-button uk-button-default uk-button-small">Dates</button>
+  </div>
+
+  <!-- Guests filter -->
+  <div>
+    <button class="uk-button uk-button-default uk-button-small">Guests</button>
+  </div>
+
+  <!-- Price filter -->
+  <div>
+    <button class="uk-button uk-button-default uk-button-small">Price</button>
+  </div>
+
+  <!-- Rooms filter -->
+  <div>
+    <button class="uk-button uk-button-default uk-button-small">Rooms and beds</button>
+  </div>
+
+  <!-- Amenities filter -->
+  <div>
+    <button class="uk-button uk-button-default uk-button-small">Amenities</button>
+  </div>
 </div>

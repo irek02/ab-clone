@@ -1,0 +1,23 @@
+<form [formGroup]="form" (submit)="submit.next(form.value)">
+  <fieldset class="uk-fieldset">
+    <div>
+      <div
+        class="uk-flex uk-flex-column uk-margin"
+        *ngFor="let filter of form.get('homeTypeFilters')['controls']; let i = index"
+      >
+        <label class="uk-flex uk-flex-row uk-margin-small">
+          <div><input class="uk-checkbox" type="checkbox" [formControl]="filter" /></div>
+          <div class="uk-margin-small-left">
+            <div>
+              {{ homeTypeFilters[i].name }}
+            </div>
+            <div class="uk-text-small">
+              {{ homeTypeFilters[i].description }}
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <button class="uk-button uk-button-link uk-button-large uk-align-right uk-margin-small">Apply</button>
+</form>
