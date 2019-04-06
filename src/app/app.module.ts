@@ -5,9 +5,17 @@ import { AppComponent } from './app.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderContainerComponent } from './containers/header-container/header-container.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HeaderContainerComponent,
+    NavComponent,
+    FiltersComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
