@@ -14,9 +14,12 @@ export class DataService {
     return this.listings$.asObservable();
   }
 
-  loadListings() {
+  loadListings(filters: any[]) {
     this.listings$.next({ loading: true, data: [] });
     this.getListingsFromApi$().subscribe(listings => {
+      if (filters.length) {
+        listings = listings.filter(listing => filters.includes(listing.type));
+      }
       this.listings$.next({ loading: false, data: listings });
     });
   }
@@ -28,7 +31,7 @@ export class DataService {
 
   private generateListings() {
     const images = ['listing.jpg', 'listing2.jpeg', 'listing3.jpeg', 'listing4.jpeg'];
-    const types = ['private room', 'entire apartment', 'tree house'];
+    const types = ['Private room', 'Entire apartment', 'Tree house', 'Hotel room'];
     const locations = ['New York', 'San Francisco', 'Boston'];
     const titles = [
       'Brownstone Studio',

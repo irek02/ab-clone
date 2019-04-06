@@ -26,12 +26,16 @@
       <div class="uk-grid-small uk-margin-left" uk-grid>
         <div><button class="uk-button uk-button-default uk-button-small">Dates</button></div>
         <div><button class="uk-button uk-button-default uk-button-small">Guests</button></div>
-        <div (clickOutside)="closeFilterDropdown('homeType')">
-          <button (click)="toggleFilterDropdown('homeType')" class="uk-button uk-button-default uk-button-small">
+        <div *ngIf="(filterBarState$ | async) as filterBarState" (clickOutside)="closeFilterDropdown('homeType')">
+          <button
+            (click)="toggleFilterDropdown('homeType')"
+            [ngClass]="{ 'uk-button-primary': filterBarState.homeType.selected }"
+            class="uk-button uk-button-default uk-button-small"
+          >
             Home type
           </button>
           <div
-            *ngIf="(filterBarState$ | async).homeType"
+            *ngIf="filterBarState.homeType.open"
             class="uk-width-medium uk-dropdown uk-open uk-dropdown-bottom-left"
             #homeTypeFilter
           >
