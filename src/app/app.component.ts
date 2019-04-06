@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   ];
   listings$: Observable<{}>;
   form: FormGroup;
+  filterBarState$ = new BehaviorSubject({ homeType: false });
 
   constructor(private dataService: DataService, private fb: FormBuilder) {}
 
@@ -42,6 +43,18 @@ export class AppComponent implements OnInit {
     return result;
   }
 
+  toggleFilterDropdown(filter: string) {
+    const filters = this.filterBarState$.getValue();
+    filters[filter] = !filters[filter];
+    this.filterBarState$.next(filters);
+  }
+
+  closeFilterDropdown(filter: string) {
+    const filters = this.filterBarState$.getValue();
+    filters[filter] = false;
+    this.filterBarState$.next(filters);
+  }
+
   submit(formValue) {
     // figure out how to:
     // - close the filter dropdown
@@ -59,8 +72,7 @@ export class AppComponent implements OnInit {
     // });
     // --
     // Hide the dropdown.
-    UIkit.dropdown(this.homeTypeFilter.nativeElement).hide();
-    this.form.disable();
+    this.toggleFilterDropdown('homeType');
     this.dataService.loadListings();
   }
 }
