@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { delay, filter, map, switchMap } from 'rxjs/operators';
+import { delay, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -32,6 +32,9 @@ export class DataService {
   getListingsFromApi$(filters: any[]): Observable<any[]> {
 
     return this.httpClient.get<any[]>('assets/mocks/listings.json').pipe(
+      // In a real API call, we would have passed filters to the backend
+      // to give us a filtered list, but because our backend is a simple
+      // JSON file, we do the filtering on the front-end manually.
       switchMap(listings => {
 
         if (filters.length) {
@@ -41,6 +44,7 @@ export class DataService {
         return of(listings);
 
       }),
+      // Simulate network delay to see the spinner.
       delay(1000)
     );
 
