@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   form: FormGroup;
   filterBarState$ = new BehaviorSubject({ homeType: { open: false, selected: false } });
 
-  constructor(private dataService: DataService, private fb: FormBuilder) {}
+  constructor(private dataService: DataService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.listings$ = this.dataService.getListings$();
@@ -61,32 +61,27 @@ export class AppComponent implements OnInit {
     this.filterBarState$.next(filters);
   }
 
+  markFilterUnSelected(filter: string) {
+    const filters = this.filterBarState$.getValue();
+    filters[filter].selected = false;
+    this.filterBarState$.next(filters);
+  }
+
   submit(formValue) {
-    // figure out how to:
-    // - close the filter dropdown
-    // - make the current filter highlighted
-    // - show the loader
-    // - re-fetch the listings with the filters applied
-    // - show the new listings
-    // const formValue = Object.assign({}, value, {
-    //   skills: form.skills.map((selected, i) => {
-    //     return {
-    //       id: this.user.skills[i].id,
-    //       selected
-    //    }
-    //   });
-    // });
-    // --
-    // Hide the dropdown.
     this.closeFilterDropdown('homeType');
+
     if (formValue.homeTypeFilters && formValue.homeTypeFilters.includes(true)) {
       this.markFilterSelected('homeType');
+    } else {
+      this.markFilterUnSelected('homeType');
     }
+
     const filters = this.homeTypeFilters
       .filter((filter, index) => formValue.homeTypeFilters[index])
       .map((filter, index) => {
         return filter.name;
       });
+
     this.dataService.loadListings(filters);
   }
 }

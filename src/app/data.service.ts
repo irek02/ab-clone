@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, filter, map, switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,53 +9,41 @@ import { delay } from 'rxjs/operators';
 export class DataService {
   private listings$ = new BehaviorSubject({ loading: true, data: [] });
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) { }
 
   getListings$(): Observable<{ loading: boolean; data: any[] }> {
+
     return this.listings$.asObservable();
+
   }
 
   loadListings(filters: any[]) {
+
     this.listings$.next({ loading: true, data: [] });
-    this.getListingsFromApi$().subscribe(listings => {
-      if (filters.length) {
-        listings = listings.filter(listing => filters.includes(listing.type));
-      }
+
+    this.getListingsFromApi$(filters).subscribe(listings => {
+
       this.listings$.next({ loading: false, data: listings });
+
     });
+
   }
 
-  getListingsFromApi$(): Observable<any[]> {
-    // In a real app this would be an API call using HttpClient.
-    return of(this.generateListings()).pipe(delay(1000));
-  }
+  getListingsFromApi$(filters: any[]): Observable<any[]> {
 
-  private generateListings() {
-    const images = ['listing.jpg', 'listing2.jpeg', 'listing3.jpeg', 'listing4.jpeg'];
-    const types = ['Private room', 'Entire apartment', 'Tree house', 'Hotel room'];
-    const locations = ['New York', 'San Francisco', 'Boston'];
-    const titles = [
-      'Brownstone Studio',
-      'Charming gardenroom with woodstove',
-      'Superb duplex apartment in the historical centre'
-    ];
+    return this.httpClient.get<any[]>('assets/mocks/listings.json').pipe(
+      switchMap(listings => {
 
-    const listings = [];
-
-    for (let i = 0; i < 40; i++) {
-      listings.push({
-        image_url: 'assets/' + images[Math.floor(Math.random() * 4)],
-        type: types[Math.floor(Math.random() * 3)],
-        location: locations[Math.floor(Math.random() * 3)],
-        title: titles[Math.floor(Math.random() * 3)],
-        price: Math.floor(Math.random() * 1000),
-        rating: {
-          stars: Math.floor(Math.random() * 5),
-          count: Math.floor(Math.random() * 1000)
+        if (filters.length) {
+          return of(listings.filter(listing => filters.includes(listing.type)));
         }
-      });
-    }
 
-    return listings;
+        return of(listings);
+
+      }),
+      delay(1000)
+    );
+
   }
+
 }
