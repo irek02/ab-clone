@@ -1,0 +1,34 @@
+<div class="uk-container uk-container-expand">
+  <h1 class="uk-heading-primary">Homes</h1>
+  <div *ngIf="listings.loading" class="uk-container uk-text-center uk-margin">
+    <div uk-spinner="ratio: 3"></div>
+  </div>
+  <div class="uk-grid-match uk-child-width-1-5@l uk-child-width-1-4@m uk-child-width-1-2@s" uk-grid>
+    <div *ngFor="let listing of listings.data">
+      <div class="uk-card">
+        <div class="uk-card-media-top">
+          <img src="{{ listing.image_url }}" class="uk-border-rounded" />
+        </div>
+        <div class="uk-card-body uk-padding-remove">
+          <div
+            class="uk-text-muted uk-text-uppercase uk-text-small uk-margin-small uk-margin-remove-vertical uk-text-bold uk-text-truncate"
+          >
+            {{ listing.type }} • {{ listing.location }}
+          </div>
+          <div class="uk-text-bold">
+            {{ listing.title }}
+          </div>
+          <div class="uk-text-small uk-text-muted">${{ listing.price }} per night</div>
+          <div class="uk-flex uk-flex-middle uk-text-small">
+            <span
+              *ngFor="let star of parseStars(listing.rating.stars)"
+              uk-icon="icon: star; ratio: 0.7"
+              [ngClass]="{ 'uk-text-danger': star, 'uk-text-muted': !star }"
+            ></span>
+            <div class="uk-text-small">&nbsp;{{ listing.rating.count }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

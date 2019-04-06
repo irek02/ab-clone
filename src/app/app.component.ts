@@ -26,22 +26,22 @@ export class AppComponent implements OnInit {
   constructor(private dataService: DataService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.listings$ = this.dataService.getListings$();
-    this.dataService.loadListings([]);
-    this.form = this.fb.group({
-      homeTypeFilters: new FormArray(this.homeTypeFilters.map(filter => new FormControl(false)))
-    });
+    // this.listings$ = this.dataService.getListings$();
+    // this.dataService.loadListings([]);
+    // this.form = this.fb.group({
+    //   homeTypeFilters: new FormArray(this.homeTypeFilters.map(filter => new FormControl(false)))
+    // });
   }
 
-  parseStars(stars: number) {
-    const result = [0, 0, 0, 0, 0];
+  // parseStars(stars: number) {
+  //   const result = [0, 0, 0, 0, 0];
 
-    for (let i = 0; i <= stars; i++) {
-      result[i] = 1;
-    }
+  //   for (let i = 0; i <= stars; i++) {
+  //     result[i] = 1;
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
   toggleFilterDropdown(filter: string) {
     const filters = this.filterBarState$.getValue();
