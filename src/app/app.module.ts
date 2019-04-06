@@ -5,10 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RoutingModule } from './modules/routing/routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, ClickOutsideModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    ClickOutsideModule,
+    HttpClientModule,
+    RoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
