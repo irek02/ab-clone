@@ -17,7 +17,10 @@ export class HomeListContainerComponent implements OnInit {
 
   ngOnInit() {
     this.listings$ = this.dataService.getListings$();
-    this.dataService.loadListings([]);
+    this.dataService.getCurrentFilters$().subscribe(filters => {
+      this.dataService.loadListings(filters.homeType);
+    });
+    // this.dataService.loadListings([]);
   }
 
 }

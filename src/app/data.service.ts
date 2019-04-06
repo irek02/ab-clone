@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { delay, switchMap } from 'rxjs/operators';
+import { delay, switchMap, switchMapTo } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   private listings$ = new BehaviorSubject({ loading: true, data: [] });
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
   getListings$(): Observable<{ loading: boolean; data: any[] }> {
 
@@ -48,6 +49,28 @@ export class DataService {
       delay(1000)
     );
 
+  }
+
+  getCurrentFilters$() {
+    return this.route.queryParams.pipe(
+      switchMap(params => {
+        if (Array.isArray(params['home-type'])) {
+          return of({
+            homeType: params['home-type']
+          });
+        }
+
+        if (typeof params['home-type'] === 'string') {
+          return of({
+            homeType: [params['home-type']]
+          });
+        }
+
+        return of({
+          homeType: []
+        });
+      })
+    );
   }
 
 }

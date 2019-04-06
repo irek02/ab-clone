@@ -2,7 +2,7 @@
   <!-- Home type filter -->
   <div (clickOutside)="closeFilterDropdown.next('homeType')">
     <button
-      [ngClass]="{ 'uk-button-primary': filterBarState.homeType.selected }"
+      [ngClass]="{ 'uk-button-primary': !!filterBarState.homeType.filters.length }"
       (click)="toggleFilterDropdown.next('homeType')"
       class="uk-button uk-button-default uk-button-small"
     >
@@ -10,11 +10,7 @@
     </button>
 
     <div *ngIf="filterBarState.homeType.open" class="uk-width-medium uk-dropdown uk-open uk-dropdown-bottom-left">
-      <app-filter-home-type-form
-        [form]="form"
-        [homeTypeFilters]="homeTypeFilters"
-        (submit)="submit.next(form.value)"
-      ></app-filter-home-type-form>
+      <app-filter-home-type-form [form]="form" (submit)="submit.next(form.value)"></app-filter-home-type-form>
     </div>
   </div>
 

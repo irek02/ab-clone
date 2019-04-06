@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilterHomeTypeFormComponent implements OnInit {
 
   @Input() form;
-  @Input() homeTypeFilters;
   @Output() submit = new EventEmitter<any>();
 
   constructor() { }

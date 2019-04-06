@@ -1,18 +1,81 @@
 <form [formGroup]="form" (submit)="submit.next(form.value)">
   <fieldset class="uk-fieldset">
     <div>
-      <div
-        class="uk-flex uk-flex-column uk-margin"
-        *ngFor="let filter of form.get('homeTypeFilters')['controls']; let i = index"
-      >
+      <div class="uk-flex uk-flex-column uk-margin">
         <label class="uk-flex uk-flex-row uk-margin-small">
-          <div><input class="uk-checkbox" type="checkbox" [formControl]="filter" /></div>
+          <div>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              [formControl]="form.get('homeTypeFilters')['controls']['Entire apartment']"
+            />
+          </div>
           <div class="uk-margin-small-left">
             <div>
-              {{ homeTypeFilters[i].name }}
+              Entire apartment
             </div>
             <div class="uk-text-small">
-              {{ homeTypeFilters[i].description }}
+              Have the whole place to yourself
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <div class="uk-flex uk-flex-column uk-margin">
+        <label class="uk-flex uk-flex-row uk-margin-small">
+          <div>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              [formControl]="form.get('homeTypeFilters')['controls']['Private room']"
+            />
+          </div>
+          <div class="uk-margin-small-left">
+            <div>
+              Private room
+            </div>
+            <div class="uk-text-small">
+              Your own room with shared common spaces
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <div class="uk-flex uk-flex-column uk-margin">
+        <label class="uk-flex uk-flex-row uk-margin-small">
+          <div>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              [formControl]="form.get('homeTypeFilters')['controls']['Tree house']"
+            />
+          </div>
+          <div class="uk-margin-small-left">
+            <div>
+              Tree house
+            </div>
+            <div class="uk-text-small">
+              Enjoy an entire tree house with your friends
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <div class="uk-flex uk-flex-column uk-margin">
+        <label class="uk-flex uk-flex-row uk-margin-small">
+          <div>
+            <input
+              class="uk-checkbox"
+              type="checkbox"
+              [formControl]="form.get('homeTypeFilters')['controls']['Hotel room']"
+            />
+          </div>
+          <div class="uk-margin-small-left">
+            <div>
+              Hotel room
+            </div>
+            <div class="uk-text-small">
+              Private or shared room in a hotel
             </div>
           </div>
         </label>

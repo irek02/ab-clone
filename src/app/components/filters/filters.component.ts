@@ -9,7 +9,6 @@ export class FiltersComponent implements OnInit {
 
   @Input() filterBarState;
   @Input() form;
-  @Input() homeTypeFilters;
   @Output() closeFilterDropdown = new EventEmitter<any>();
   @Output() toggleFilterDropdown = new EventEmitter<any>();
   @Output() submit = new EventEmitter<any>();

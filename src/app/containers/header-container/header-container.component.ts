@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/data.service';
+import { Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header-container',
@@ -9,21 +10,28 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./header-container.component.less']
 })
 export class HeaderContainerComponent implements OnInit {
-  homeTypeFilters = [
-    { name: 'Entire apartment', description: 'Have the whole place to yourself', selected: false },
-    { name: 'Private room', description: 'Your own room with shared common spaces', selected: false },
-    { name: 'Tree house', description: 'Enjoy an entire tree house with your friends', selected: false },
-    { name: 'Hotel room', description: 'Private or shared room in a hotel', selected: false }
-  ];
   listings$: Observable<{}>;
   form: FormGroup;
-  filterBarState$ = new BehaviorSubject({ homeType: { open: false, selected: false } });
+  filterBarState$ = new BehaviorSubject({ homeType: { open: false, selected: false, filters: [] } });
 
-  constructor(private dataService: DataService, private fb: FormBuilder) { }
+  constructor(private dataService: DataService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      homeTypeFilters: new FormArray(this.homeTypeFilters.map(filter => new FormControl(false)))
+      homeTypeFilters: this.fb.group({
+        'Entire apartment': [''],
+        'Private room': [''],
+        'Tree house': [''],
+        'Hotel room': ['']
+      })
+    });
+    this.dataService.getCurrentFilters$().subscribe(filters => {
+      const filterBarState = this.filterBarState$.getValue();
+      filterBarState.homeType.filters = filters.homeType;
+      Object.keys(this.form.get('homeTypeFilters').controls).forEach(filter => {
+        this.form.get('homeTypeFilters').controls[filter].value = filters.homeType.includes(filter);
+      });
+      this.filterBarState$.next(filterBarState);
     });
   }
 
@@ -59,19 +67,11 @@ export class HeaderContainerComponent implements OnInit {
 
     this.closeFilterDropdown('homeType');
 
-    if (formValue.homeTypeFilters && formValue.homeTypeFilters.includes(true)) {
-      this.markFilterSelected('homeType');
-    } else {
-      this.markFilterUnSelected('homeType');
-    }
+    formValue.homeTypeFilters = Object.keys(formValue.homeTypeFilters).filter(filter => formValue.homeTypeFilters[filter]);
 
-    const filters = this.homeTypeFilters
-      .filter((filter, index) => formValue.homeTypeFilters[index])
-      .map((filter, index) => {
-        return filter.name;
-      });
+    this.router.navigate(['homes'], { queryParams: { 'home-type': formValue.homeTypeFilters } });
 
-    this.dataService.loadListings(filters);
+    this.dataService.loadListings(formValue.homeTypeFilters);
 
   }
 
