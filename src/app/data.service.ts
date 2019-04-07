@@ -53,6 +53,7 @@ export class DataService {
   }
 
   getCurrentFilters$() {
+
     return this.route.queryParams.pipe(
       switchMap(params => {
         if (Array.isArray(params['home-type'])) {
@@ -72,6 +73,7 @@ export class DataService {
         });
       })
     );
+
   }
 
 }

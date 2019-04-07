@@ -3,8 +3,14 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 
+export type HomeTypes = 'Entire apartment' | 'Private room' | 'Tree house' | 'Hotel room';
+
 export interface Filters {
-  homeType: string[];
+  homeType: Array<HomeTypes>;
+}
+
+export interface FilterBarState {
+  homeType: { open: boolean; filters: Array<HomeTypes> };
 }
 
 @Component({
@@ -14,7 +20,7 @@ export interface Filters {
 })
 export class HeaderContainerComponent implements OnInit {
   listings$: Observable<{}>;
-  filterBarState$ = new BehaviorSubject({ homeType: { open: false, filters: [] } });
+  filterBarState$ = new BehaviorSubject<FilterBarState>({ homeType: { open: false, filters: [] } });
 
   constructor(private dataService: DataService, private router: Router) { }
 
