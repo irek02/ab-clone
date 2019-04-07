@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { DataState } from 'src/app/data.service';
 
 @Component({
   selector: 'app-home-list',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
 })
 export class HomeListComponent implements OnInit {
 
-  @Input() listings: { loading: boolean, data: any[] };
+  @Input() listings: DataState;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { Component, OnInit } from '@angular/core';
+import { DataService, DataState } from 'src/app/data.service';
 import { Filters } from 'src/app/containers/header-container/header-container.component';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeListContainerComponent implements OnInit {
 
-  listings$: Observable<{}>;
+  listings$: Observable<DataState>;
 
   constructor(private dataService: DataService) { }
 

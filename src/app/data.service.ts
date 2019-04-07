@@ -5,6 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Filters } from 'src/app/containers/header-container/header-container.component';
 
+export interface DataState {
+  loading: boolean;
+  data: any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +18,7 @@ export class DataService {
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
-  getListings$(): Observable<{ loading: boolean; data: any[] }> {
+  getListings$(): Observable<DataState> {
 
     return this.listings$.asObservable();
 
