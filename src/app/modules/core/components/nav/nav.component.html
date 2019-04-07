@@ -3,9 +3,26 @@
     <a href="#" class="uk-navbar-item uk-logo uk-padding-remove-left">
       <img src="assets/logo.png" width="40" />
     </a>
+    <a
+      class="uk-navbar-toggle uk-hidden@s uk-padding-remove-left"
+      uk-navbar-toggle-icon
+      uk-toggle
+      href="#hamburger-menu"
+    ></a>
+    <div id="hamburger-menu" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <ul class="uk-nav uk-nav-default uk-light">
+          <li><a href="#">Become a host</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Sign up</a></li>
+          <li><a href="#">Log in</a></li>
+        </ul>
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+      </div>
+    </div>
   </div>
-  <div class="uk-navbar-left uk-width-expand">
-    <form class="uk-search uk-search-default uk-box-shadow-small uk-card-hover uk-width-large">
+  <div class="uk-navbar-left uk-width-small@xs uk-width-medium@s uk-width-large@m">
+    <form class="uk-search uk-search-default uk-box-shadow-small uk-card-hover uk-width-expand">
       <span uk-search-icon></span>
       <input class="uk-search-input" type="search" placeholder="Anywhere • Homes" />
     </form>
