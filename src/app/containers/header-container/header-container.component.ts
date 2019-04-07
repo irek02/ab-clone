@@ -19,7 +19,7 @@ export interface FilterBarState {
   styleUrls: ['./header-container.component.less']
 })
 export class HeaderContainerComponent implements OnInit {
-  listings$: Observable<{}>;
+
   filterBarState$ = new BehaviorSubject<FilterBarState>({ homeType: { open: false, filters: [] } });
 
   constructor(private dataService: DataService, private router: Router) { }
@@ -56,7 +56,7 @@ export class HeaderContainerComponent implements OnInit {
 
     this.router.navigate(['homes'], { queryParams: { 'home-type': filters.homeType } });
 
-    this.dataService.loadListings(filters);
+    this.dataService.loadHomes(filters);
 
   }
 

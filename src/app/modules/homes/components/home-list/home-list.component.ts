@@ -9,7 +9,7 @@ import { DataState } from 'src/app/data.service';
 })
 export class HomeListComponent implements OnInit {
 
-  @Input() listings: DataState;
+  @Input() homes: DataState;
 
   constructor() { }
 

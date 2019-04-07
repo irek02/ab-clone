@@ -14,41 +14,41 @@ export interface DataState {
   providedIn: 'root'
 })
 export class DataService {
-  private listings$ = new BehaviorSubject({ loading: true, data: [] });
+  private homes$ = new BehaviorSubject({ loading: true, data: [] });
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
-  getListings$(): Observable<DataState> {
+  getHomes$(): Observable<DataState> {
 
-    return this.listings$.asObservable();
+    return this.homes$.asObservable();
 
   }
 
-  loadListings(filters: Filters) {
+  loadHomes(filters: Filters) {
 
-    this.listings$.next({ loading: true, data: [] });
+    this.homes$.next({ loading: true, data: [] });
 
-    this.getListingsFromApi$(filters).subscribe(listings => {
+    this.getHomesFromApi$(filters).subscribe(home => {
 
-      this.listings$.next({ loading: false, data: listings });
+      this.homes$.next({ loading: false, data: home });
 
     });
 
   }
 
-  getListingsFromApi$(filters: Filters): Observable<any[]> {
+  getHomesFromApi$(filters: Filters): Observable<any[]> {
 
-    return this.httpClient.get<any[]>('assets/mocks/listings.json').pipe(
+    return this.httpClient.get<any[]>('assets/mocks/homes.json').pipe(
       // In a real API call, we would have passed filters to the backend
       // to give us a filtered list, but because our backend is a simple
-      // JSON file, we filter the listings here.
-      switchMap(listings => {
+      // JSON file, we filter the homes here.
+      switchMap(homes => {
 
         if (filters.homeType.length) {
-          return of(listings.filter(listing => filters.homeType.includes(listing.type)));
+          return of(homes.filter(listing => filters.homeType.includes(listing.type)));
         }
 
-        return of(listings);
+        return of(homes);
 
       }),
       // Simulate network delay to see the spinner.

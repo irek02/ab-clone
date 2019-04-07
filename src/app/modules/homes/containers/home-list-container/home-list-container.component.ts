@@ -10,17 +10,17 @@ import { Observable } from 'rxjs';
 })
 export class HomeListContainerComponent implements OnInit {
 
-  listings$: Observable<DataState>;
+  homes$: Observable<DataState>;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
 
-    this.listings$ = this.dataService.getListings$();
+    this.homes$ = this.dataService.getHomes$();
 
     this.dataService.getCurrentFilters$().subscribe((filters: Filters) => {
 
-      this.dataService.loadListings(filters);
+      this.dataService.loadHomes(filters);
 
     });
 
