@@ -4,10 +4,9 @@
 
 <app-filters
   [filterBarState]="filterBarState$ | async"
-  [form]="form"
   (closeFilterDropdown)="closeFilterDropdown($event)"
   (toggleFilterDropdown)="toggleFilterDropdown($event)"
-  (submit)="submit($event)"
+  (applyFilters)="applyFilters($event)"
 ></app-filters>
 
 <hr class="uk-margin-small uk-margin-remove-bottom" />

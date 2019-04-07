@@ -10,7 +10,10 @@
     </button>
 
     <div *ngIf="filterBarState.homeType.open" class="uk-width-medium uk-dropdown uk-open uk-dropdown-bottom-left">
-      <app-filter-home-type-form [form]="form" (submit)="submit.next(form.value)"></app-filter-home-type-form>
+      <app-filter-home-type-form
+        [defaultFilters]="filterBarState.homeType.filters"
+        (applyHomeTypeFilter)="applyFilters.next({ homeType: $event })"
+      ></app-filter-home-type-form>
     </div>
   </div>
 

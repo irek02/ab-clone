@@ -1,14 +1,10 @@
-<form [formGroup]="form" (submit)="submit.next(form.value)">
+<form [formGroup]="form" (submit)="submit(form.value)">
   <fieldset class="uk-fieldset">
     <div>
       <div class="uk-flex uk-flex-column uk-margin">
         <label class="uk-flex uk-flex-row uk-margin-small">
           <div>
-            <input
-              class="uk-checkbox"
-              type="checkbox"
-              [formControl]="form.get('homeTypeFilters')['controls']['Entire apartment']"
-            />
+            <input class="uk-checkbox" type="checkbox" [formControlName]="'Entire apartment'" />
           </div>
           <div class="uk-margin-small-left">
             <div>
@@ -24,11 +20,7 @@
       <div class="uk-flex uk-flex-column uk-margin">
         <label class="uk-flex uk-flex-row uk-margin-small">
           <div>
-            <input
-              class="uk-checkbox"
-              type="checkbox"
-              [formControl]="form.get('homeTypeFilters')['controls']['Private room']"
-            />
+            <input class="uk-checkbox" type="checkbox" [formControlName]="'Private room'" />
           </div>
           <div class="uk-margin-small-left">
             <div>
@@ -44,11 +36,7 @@
       <div class="uk-flex uk-flex-column uk-margin">
         <label class="uk-flex uk-flex-row uk-margin-small">
           <div>
-            <input
-              class="uk-checkbox"
-              type="checkbox"
-              [formControl]="form.get('homeTypeFilters')['controls']['Tree house']"
-            />
+            <input class="uk-checkbox" type="checkbox" [formControlName]="'Tree house'" />
           </div>
           <div class="uk-margin-small-left">
             <div>
@@ -64,11 +52,7 @@
       <div class="uk-flex uk-flex-column uk-margin">
         <label class="uk-flex uk-flex-row uk-margin-small">
           <div>
-            <input
-              class="uk-checkbox"
-              type="checkbox"
-              [formControl]="form.get('homeTypeFilters')['controls']['Hotel room']"
-            />
+            <input class="uk-checkbox" type="checkbox" [formControlName]="'Hotel room'" />
           </div>
           <div class="uk-margin-small-left">
             <div>

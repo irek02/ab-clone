@@ -8,10 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   @Input() filterBarState;
-  @Input() form;
   @Output() closeFilterDropdown = new EventEmitter<any>();
   @Output() toggleFilterDropdown = new EventEmitter<any>();
-  @Output() submit = new EventEmitter<any>();
+  @Output() applyFilters = new EventEmitter<any>();
 
   constructor() { }
 
