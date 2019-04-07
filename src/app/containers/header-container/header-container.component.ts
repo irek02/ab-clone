@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 
@@ -18,19 +18,29 @@ export interface FilterBarState {
   templateUrl: './header-container.component.html',
   styleUrls: ['./header-container.component.less']
 })
-export class HeaderContainerComponent implements OnInit {
+export class HeaderContainerComponent implements OnInit, OnDestroy {
 
   filterBarState$ = new BehaviorSubject<FilterBarState>({ homeType: { open: false, filters: [] } });
+  subscription: Subscription;
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
 
-    this.dataService.getFiltersFromUrlQueryParams().subscribe((filters: Filters) => {
+    this.subscription = this.dataService.getFiltersFromUrlQueryParams().subscribe((filters: Filters) => {
+
       const filterBarState = this.filterBarState$.getValue();
       filterBarState.homeType.filters = filters.homeType;
+
       this.filterBarState$.next(filterBarState);
+
     });
+
+  }
+
+  ngOnDestroy() {
+
+    this.subscription.unsubscribe();
 
   }
 
@@ -38,6 +48,7 @@ export class HeaderContainerComponent implements OnInit {
 
     const filters = this.filterBarState$.getValue();
     filters[filter].open = !filters[filter].open;
+
     this.filterBarState$.next(filters);
 
   }
@@ -46,6 +57,7 @@ export class HeaderContainerComponent implements OnInit {
 
     const filters = this.filterBarState$.getValue();
     filters[filter].open = false;
+
     this.filterBarState$.next(filters);
 
   }

@@ -14,6 +14,7 @@ export interface DataState {
   providedIn: 'root'
 })
 export class DataService {
+
   private homes$ = new BehaviorSubject<DataState>({ loading: true, data: [] });
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
