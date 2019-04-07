@@ -15,14 +15,4 @@ export class HomeListComponent implements OnInit {
   ngOnInit() {
   }
 
-  parseStars(stars: number) {
-    const result = [0, 0, 0, 0, 0];
-
-    for (let i = 0; i <= stars; i++) {
-      result[i] = 1;
-    }
-
-    return result;
-  }
-
 }
