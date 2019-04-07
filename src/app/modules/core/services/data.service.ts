@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { delay, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Filters } from 'src/app/containers/header-container/header-container.component';
+import { Filters } from '../containers/header-container/header-container.component';
 
 export interface DataState {
   loading: boolean;

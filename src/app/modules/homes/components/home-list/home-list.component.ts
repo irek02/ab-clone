@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { DataState } from 'src/app/data.service';
+import { DataState } from 'src/app/modules/core/services/data.service';
 
 @Component({
   selector: 'app-home-list',

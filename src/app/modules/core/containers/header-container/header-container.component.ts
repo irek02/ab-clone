@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 export type HomeTypes = 'Entire apartment' | 'Private room' | 'Tree house' | 'Hotel room';
 

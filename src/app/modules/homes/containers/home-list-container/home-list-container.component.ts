@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService, DataState } from 'src/app/data.service';
-import { Filters } from 'src/app/containers/header-container/header-container.component';
 import { Observable, Subscription } from 'rxjs';
+import { DataState, DataService } from 'src/app/modules/core/services/data.service';
+import { Filters } from 'src/app/modules/core/containers/header-container/header-container.component';
 
 @Component({
   selector: 'app-home-list-container',
