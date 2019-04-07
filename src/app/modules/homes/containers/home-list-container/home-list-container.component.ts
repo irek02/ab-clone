@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from 'src/app/data.service';
-import { FormBuilder } from '@angular/forms';
+import { Filters } from 'src/app/containers/header-container/header-container.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,17 +10,20 @@ import { Observable } from 'rxjs';
 })
 export class HomeListContainerComponent implements OnInit {
 
-  // @Input() listings: { loading: boolean, data: any[] };
   listings$: Observable<{}>;
 
-  constructor(private dataService: DataService, private fb: FormBuilder) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+
     this.listings$ = this.dataService.getListings$();
-    this.dataService.getCurrentFilters$().subscribe(filters => {
-      this.dataService.loadListings(filters.homeType);
+
+    this.dataService.getCurrentFilters$().subscribe((filters: Filters) => {
+
+      this.dataService.loadListings(filters);
+
     });
-    // this.dataService.loadListings([]);
+
   }
 
 }

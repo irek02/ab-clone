@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class FilterHomeTypeFormComponent implements OnInit {
 
   @Input() defaultFilters;
-  @Output() applyHomeTypeFilter = new EventEmitter<any>();
+  @Output() applyHomeTypeFilter = new EventEmitter<string[]>();
 
   form: FormGroup;
 

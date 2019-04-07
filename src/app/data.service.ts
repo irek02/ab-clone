@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { delay, switchMap, switchMapTo } from 'rxjs/operators';
+import { delay, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Filters } from 'src/app/containers/header-container/header-container.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class DataService {
 
   }
 
-  loadListings(filters: any[]) {
+  loadListings(filters: Filters) {
 
     this.listings$.next({ loading: true, data: [] });
 
@@ -30,16 +31,16 @@ export class DataService {
 
   }
 
-  getListingsFromApi$(filters: any[]): Observable<any[]> {
+  getListingsFromApi$(filters: Filters): Observable<any[]> {
 
     return this.httpClient.get<any[]>('assets/mocks/listings.json').pipe(
       // In a real API call, we would have passed filters to the backend
       // to give us a filtered list, but because our backend is a simple
-      // JSON file, we do the filtering on the front-end manually.
+      // JSON file, we filter the listings here.
       switchMap(listings => {
 
-        if (filters.length) {
-          return of(listings.filter(listing => filters.includes(listing.type)));
+        if (filters.homeType.length) {
+          return of(listings.filter(listing => filters.homeType.includes(listing.type)));
         }
 
         return of(listings);
