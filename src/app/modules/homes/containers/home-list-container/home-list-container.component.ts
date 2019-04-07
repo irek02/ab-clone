@@ -18,7 +18,7 @@ export class HomeListContainerComponent implements OnInit {
 
     this.homes$ = this.dataService.getHomes$();
 
-    this.dataService.getCurrentFilters$().subscribe((filters: Filters) => {
+    this.dataService.getFiltersFromUrlQueryParams().subscribe((filters: Filters) => {
 
       this.dataService.loadHomes(filters);
 

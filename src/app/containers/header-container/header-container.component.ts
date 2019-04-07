@@ -26,7 +26,7 @@ export class HeaderContainerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getCurrentFilters$().subscribe(filters => {
+    this.dataService.getFiltersFromUrlQueryParams().subscribe((filters: Filters) => {
       const filterBarState = this.filterBarState$.getValue();
       filterBarState.homeType.filters = filters.homeType;
       this.filterBarState$.next(filterBarState);

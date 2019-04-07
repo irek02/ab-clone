@@ -14,7 +14,7 @@ export interface DataState {
   providedIn: 'root'
 })
 export class DataService {
-  private homes$ = new BehaviorSubject({ loading: true, data: [] });
+  private homes$ = new BehaviorSubject<DataState>({ loading: true, data: [] });
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
@@ -57,7 +57,7 @@ export class DataService {
 
   }
 
-  getCurrentFilters$() {
+  getFiltersFromUrlQueryParams(): Observable<Filters> {
 
     return this.route.queryParams.pipe(
       switchMap(params => {
