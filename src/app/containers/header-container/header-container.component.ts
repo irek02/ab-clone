@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 
