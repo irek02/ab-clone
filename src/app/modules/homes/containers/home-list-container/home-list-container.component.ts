@@ -5,8 +5,10 @@ import { Filters, HomeTypes } from '../../../core/containers/header-container/he
 
 export interface Home {
   type: HomeTypes;
+  title: string;
   location: string;
   price: number;
+  image_url: string;
   rating: {
     count: number;
     stars: number;
