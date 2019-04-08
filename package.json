@@ -22,7 +22,6 @@
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "ng-click-outside": "^4.0.0",
-    "ngx-infinite-scroll": "^7.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "uikit": "^3.0.3",
