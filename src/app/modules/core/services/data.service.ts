@@ -4,10 +4,11 @@ import { delay, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Filters } from '../containers/header-container/header-container.component';
+import { Home } from '../../homes/containers/home-list-container/home-list-container.component';
 
-export interface DataState {
+export interface DataState<T> {
   loading: boolean;
-  data: any;
+  data: T;
 }
 
 @Injectable({
@@ -15,11 +16,11 @@ export interface DataState {
 })
 export class DataService {
 
-  private homes$ = new BehaviorSubject<DataState>({ loading: true, data: [] });
+  private homes$ = new BehaviorSubject({ loading: true, data: [] });
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
 
-  getHomes$(): Observable<DataState> {
+  getHomes$(): Observable<DataState<Home[]>> {
 
     return this.homes$.asObservable();
 
@@ -29,15 +30,15 @@ export class DataService {
 
     this.homes$.next({ loading: true, data: [] });
 
-    this.getHomesFromApi$(filters).subscribe(home => {
+    this.getHomesFromApi$(filters).subscribe((homes: Home[]) => {
 
-      this.homes$.next({ loading: false, data: home });
+      this.homes$.next({ loading: false, data: homes });
 
     });
 
   }
 
-  getHomesFromApi$(filters: Filters): Observable<any[]> {
+  getHomesFromApi$(filters: Filters): Observable<Home[]> {
 
     return this.httpClient.get<any[]>('assets/mocks/homes.json').pipe(
       // In a real API call, we would have passed filters to the backend

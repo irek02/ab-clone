@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Home } from '../../containers/home-list-container/home-list-container.component';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
 })
 export class HomeComponent implements OnInit {
 
-  @Input() home;
+  @Input() home: Home;
 
   constructor() { }
 
