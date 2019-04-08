@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { DataState, DataService } from 'src/app/modules/core/services/data.service';
-import { Filters, HomeTypes } from 'src/app/modules/core/containers/header-container/header-container.component';
+import { DataState, DataService } from '../../../core/services/data.service';
+import { Filters, HomeTypes } from '../../../core/containers/header-container/header-container.component';
 
 export interface Home {
   type: HomeTypes;
