@@ -10,8 +10,8 @@ import { Filters } from '../../containers/header-container/header-container.comp
 export class FiltersComponent implements OnInit {
 
   @Input() filterBarState;
-  @Output() closeFilterDropdown = new EventEmitter<any>();
-  @Output() toggleFilterDropdown = new EventEmitter<any>();
+  @Output() closeFilterDropdown = new EventEmitter<string>();
+  @Output() toggleFilterDropdown = new EventEmitter<string>();
   @Output() applyFilters = new EventEmitter<Filters>();
 
   constructor() { }
