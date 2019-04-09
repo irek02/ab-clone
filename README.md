@@ -2,6 +2,10 @@
 
 This is a project that demonstrates how to build your own version of a popular rental booking app using [Angular](angular.io) and [UIkit](getuikit.com).
 
+Live view:
+
+- https://irek02.github.io/airbnb-clone/homes
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
