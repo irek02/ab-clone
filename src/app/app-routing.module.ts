@@ -10,6 +10,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'homes',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'homes'
   }
 ];
 
