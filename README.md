@@ -4,7 +4,7 @@ This is a project that demonstrates how to build your own version of a popular r
 
 Live view:
 
-- https://irek02.github.io/airbnb-clone/homes
+- https://irek02.github.io/airbnb-clone
 
 ## Development server
 
