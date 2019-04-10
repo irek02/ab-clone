@@ -1,10 +1,6 @@
-# Airbnb Clone
+# AirbnbClone
 
-This is a project that demonstrates how to build your own version of a popular rental booking app using [Angular](angular.io) and [UIkit](getuikit.com).
-
-Live view:
-
-- https://irek02.github.io/airbnb-clone
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
 
