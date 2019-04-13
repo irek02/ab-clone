@@ -1,3 +1,11 @@
-<app-header-container></app-header-container>
+<header>
+  <div class="uk-container uk-container-expand uk-padding-remove">
+    <div class="uk-background-default" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+      <app-header-container></app-header-container>
+    </div>
+  </div>
+</header>
 
-<router-outlet></router-outlet>
+<section class="uk-section uk-padding-small uk-padding-remove-left">
+  <router-outlet></router-outlet>
+</section>
