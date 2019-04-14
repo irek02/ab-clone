@@ -28,7 +28,11 @@ export class DataService {
 
     this.homes$.next({ loading: true, data: [] });
 
-    this.getHomesFromApi$().subscribe((homes: Home[]) => {
+    this.httpClient.get<any[]>('assets/mocks/homes.json').pipe(
+
+      delay(1000)
+
+    ).subscribe((homes: Home[]) => {
 
       this.homes$.next({ loading: false, data: homes });
 
@@ -36,12 +40,4 @@ export class DataService {
 
   }
 
-  getHomesFromApi$(): Observable<Home[]> {
-
-    return this.httpClient.get<any[]>('assets/mocks/homes.json').pipe(
-      // Simulate network delay to see the spinner.
-      delay(1000)
-    );
-
-  }
 }
