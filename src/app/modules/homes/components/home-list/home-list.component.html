@@ -1,0 +1,13 @@
+<div class="uk-container uk-container-expand uk-padding-remove-horizontal uk-margin-left uk-margin-right">
+  <h1 class="uk-heading-primary">Homes</h1>
+
+  <div *ngIf="homes.loading" class="uk-container uk-text-center uk-margin">
+    <div uk-spinner="ratio: 3"></div>
+  </div>
+
+  <div class="uk-grid-match uk-child-width-1-5@l uk-child-width-1-4@m uk-child-width-1-2@s" uk-grid>
+    <div *ngFor="let home of homes.data">
+      <app-home [home]="home"></app-home>
+    </div>
+  </div>
+</div>

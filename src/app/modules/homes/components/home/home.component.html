@@ -1,0 +1,24 @@
+<div class="uk-card">
+  <div class="uk-card-media-top">
+    <img src="{{ home.image_url }}" class="uk-border-rounded" />
+  </div>
+  <div class="uk-card-body uk-padding-remove">
+    <div
+      class="uk-text-muted uk-text-uppercase uk-text-small uk-text-bold uk-text-truncate uk-margin-small uk-margin-remove-vertical"
+    >
+      {{ home.type }} • {{ home.location }}
+    </div>
+    <div class="uk-text-bold">
+      {{ home.title }}
+    </div>
+    <div class="uk-text-small uk-text-muted">${{ home.price }} per night</div>
+    <div class="uk-flex uk-flex-middle uk-text-small">
+      <span
+        *ngFor="let star of parseStars(home.rating.stars)"
+        uk-icon="icon: star; ratio: 0.7"
+        [ngClass]="{ 'uk-text-danger': star, 'uk-text-muted': !star }"
+      ></span>
+      <div class="uk-text-small">&nbsp;{{ home.rating.count }}</div>
+    </div>
+  </div>
+</div>

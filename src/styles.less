@@ -1,9 +1,12 @@
 @import '../node_modules/uikit/src/less/uikit.theme.less';
 
 @color-default: #484848;
+@global-color: @color-default;
+@search-color: @color-default;
 @search-placeholder-color: @color-default;
 @offcanvas-bar-background: #fff;
 @offcanvas-bar-color-mode: none;
+@border-rounded-border-radius: 3px;
 
 .hook-navbar-nav-item() {
   text-transform: none;
@@ -22,4 +25,10 @@
 .hook-button() {
   border-radius: 5px;
   text-transform: none;
+}
+
+.hook-icon-misc() {
+  svg polygon {
+    fill: currentcolor;
+  }
 }

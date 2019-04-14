@@ -1,4 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeTypes } from 'src/app/modules/core/containers/header-container/header-container.component';
+import { DataService } from 'src/app/modules/core/services/data.service';
+
+export interface Home {
+  type: HomeTypes;
+  title: string;
+  location: string;
+  price: number;
+  image_url: string;
+  rating: {
+    count: number;
+    stars: number;
+  };
+}
 
 @Component({
   selector: 'app-home-list-container',
@@ -7,9 +21,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeListContainerComponent implements OnInit {
 
-  constructor() { }
+  homes$ = this.dataService.getHomes$();
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.loadHomes();
   }
 
 }
