@@ -4,12 +4,14 @@ import { HeaderContainerComponent } from './containers/header-container/header-c
 import { NavComponent } from './components/nav/nav.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [HeaderContainerComponent, NavComponent, FiltersComponent],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ClickOutsideModule
   ],
   exports: [HeaderContainerComponent]
 })
