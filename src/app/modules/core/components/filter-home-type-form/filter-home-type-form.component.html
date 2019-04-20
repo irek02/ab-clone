@@ -1,0 +1,75 @@
+<form [formGroup]="form" (submit)="submit(form.value)">
+  <!-- Entire apartment -->
+
+  <label class="uk-flex uk-flex-row uk-margin">
+    <div>
+      <input class="uk-checkbox" type="checkbox" [formControlName]="'Entire apartment'" />
+    </div>
+
+    <div class="uk-margin-small-left">
+      <div>
+        Entire apartment
+      </div>
+
+      <div class="uk-text-small">
+        Have the whole place to yourself
+      </div>
+    </div>
+  </label>
+
+  <!-- Private room -->
+
+  <label class="uk-flex uk-flex-row uk-margin">
+    <div>
+      <input class="uk-checkbox" type="checkbox" [formControlName]="'Private room'" />
+    </div>
+
+    <div class="uk-margin-small-left">
+      <div>
+        Private room
+      </div>
+
+      <div class="uk-text-small">
+        Your own room with shared common spaces
+      </div>
+    </div>
+  </label>
+
+  <!-- Tree house -->
+
+  <label class="uk-flex uk-flex-row uk-margin">
+    <div>
+      <input class="uk-checkbox" type="checkbox" [formControlName]="'Tree house'" />
+    </div>
+
+    <div class="uk-margin-small-left">
+      <div>
+        Tree house
+      </div>
+
+      <div class="uk-text-small">
+        Enjoy an entire tree house with your friends
+      </div>
+    </div>
+  </label>
+
+  <!-- Hotel room -->
+
+  <label class="uk-flex uk-flex-row uk-margin">
+    <div>
+      <input class="uk-checkbox" type="checkbox" [formControlName]="'Hotel room'" />
+    </div>
+
+    <div class="uk-margin-small-left">
+      <div>
+        Hotel room
+      </div>
+
+      <div class="uk-text-small">
+        Private or shared room in a hotel
+      </div>
+    </div>
+  </label>
+
+  <button class="uk-button uk-button-link uk-button-large uk-align-right uk-margin-small">Apply</button>
+</form>
