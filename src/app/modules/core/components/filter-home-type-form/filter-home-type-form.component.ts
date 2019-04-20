@@ -29,6 +29,7 @@ export class FilterHomeTypeFormComponent implements OnInit {
     const homeTypes = Object.keys(formValue).filter(filter => formValue[filter]);
 
     // Will pass homeTypes to the container component to make the API call and refresh the list.
+    console.log(homeTypes);
   }
 
 }
