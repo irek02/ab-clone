@@ -68,8 +68,6 @@ export class HeaderContainerComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['homes'], { queryParams: { 'home-type': filters.homeType } });
 
-    this.dataService.loadHomes(filters);
-
   }
 
 }
