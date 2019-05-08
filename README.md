@@ -4,7 +4,7 @@ This project demonstrates how to build your own version of a popular rental book
 
 Tutorial:
 
-- https://www.youtube.com/watch?v=EA39MiSM72Q&list=PL39BVRJAv2bn2xyA4ikL6dWVen3yr0xP_
+- https://www.udemy.com/airbnb-clone-with-angular
 
 Live view:
 
